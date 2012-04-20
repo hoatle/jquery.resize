@@ -17,16 +17,18 @@
 /**
  * The jQuery resize plugin, version v0.1.0
  *
+ * https://github.com/hoatle/jquery.resize
+ *
  * Usage:
  *
  * $el.resize(options, duration, easing, finishCallback);
  *
  * For example:
  *
- * $(el).resize({
+ * $el.resize({
  *   dir: 't',
- *   rSize: 200
- * }, 1000, null, function() {
+ *   tSize: 200
+ * }, 1000, function() {
  *   //finish calledback
  * });
  *
@@ -43,14 +45,18 @@
 
   };
 
-  var defaultDuration = 'normal';
+  var defaultSpeed = 'normal';
 
-  var resize = function (options, duration, easing, finishCallback) {
+  var resize = function (options, speed, easing, finishCallback) {
+    if (arguments.length == 3) {
+      if ($.isFunction(arguments[2])) {
+        finishCallback = arguments[2];
+        easing = null;
+      }
+    }
     options = $.extend(defaultOptions, options);
-    duration ? duration : duration = defaultDuration;
+    speed ? speed : speed = defaultSpeed;
 
-    var size = options.size || 0;
-    size = parseFloat(size);
 
     var lSize = options.lSize || 0;
     lSize = parseFloat(lSize);
@@ -75,41 +81,41 @@
     switch (options.dir) {
       case 't':
       {
-        newTop = currentTop - size;
-        newHeight = currentHeight + size;
+        newTop = currentTop - tSize;
+        newHeight = currentHeight + tSize;
         this.animate({
           top: newTop + 'px',
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
       case 'r':
       {
-        newWidth = currentWidth + size;
+        newWidth = currentWidth + rSize;
         this.animate({
           width: newWidth + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
       case 'b':
       {
-        newHeight = currentHeight + size;
+        newHeight = currentHeight + bSize;
         this.animate({
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
       case 'l':
       {
-        newLeft = currentLeft - size;
-        newWidth = currentWidth + size;
+        newLeft = currentLeft - lSize;
+        newWidth = currentWidth + lSize;
         this.animate({
           width: newWidth + 'px',
           left: newLeft + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -122,7 +128,7 @@
           top: newTop + 'px',
           height: newHeight + 'px',
           width: newWidth + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -133,7 +139,7 @@
         this.animate({
           width: newWidth + 'px',
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -146,7 +152,7 @@
           left: newLeft + 'px',
           width: newWidth + 'px',
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -161,7 +167,7 @@
           left: newLeft + 'px',
           width: newWidth + 'px',
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -172,7 +178,7 @@
         this.animate({
           top: newTop + 'px',
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -183,7 +189,7 @@
         this.animate({
           left: newLeft + 'px',
           width: newWidth + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -198,7 +204,7 @@
           left: newLeft + 'px',
           width: newWidth + 'px',
           height: newHeight + 'px'
-        }, duration, easing, finishCallback);
+        }, speed, easing, finishCallback);
         break;
       }
 
@@ -210,6 +216,7 @@
         }
       }
     }
+    return this;
   }
 
   $.fn.resize = resize;
