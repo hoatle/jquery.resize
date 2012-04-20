@@ -22,4 +22,4 @@
  * @author hoatle
  */
 
- Demo: http://jsfiddle.net/hoatle/y2CvB/1/
+ Demo: http://jsfiddle.net/hoatle/y2CvB/2/
