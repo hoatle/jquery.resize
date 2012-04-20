@@ -47,7 +47,7 @@
 
   var resize = function (options, duration, easing, finishCallback) {
     options = $.extend(defaultOptions, options);
-    duration ? duration : duration = defaultDuration
+    duration ? duration : duration = defaultDuration;
 
     var size = options.size || 0;
     size = parseFloat(size);
