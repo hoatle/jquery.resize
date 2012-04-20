@@ -48,7 +48,6 @@
   var resize = function (options, duration, easing, finishCallback) {
     options = $.extend(defaultOptions, options);
     duration ? duration : duration = defaultDuration
-    $.log('duration', duration);
 
     var size = options.size || 0;
     size = parseFloat(size);
@@ -72,8 +71,6 @@
 
     var newLeft, newWidth, newTop, newHeight;
 
-    $.log('currentLeft', currentLeft);
-    $.log('currentWidth', currentWidth);
 
     switch (options.dir) {
       case 't':
@@ -108,12 +105,7 @@
       case 'l':
       {
         newLeft = currentLeft - size;
-        $.log('newLeft', newLeft);
-
         newWidth = currentWidth + size;
-
-        $.log('newWidth', newWidth);
-
         this.animate({
           width: newWidth + 'px',
           left: newLeft + 'px'
