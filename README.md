@@ -1,3 +1,4 @@
+<pre>
 /**
  * The jQuery resize plugin, version v0.1.0
  *
@@ -21,5 +22,6 @@
  *
  * @author hoatle
  */
+</pre>
 
  Demo: http://jsfiddle.net/hoatle/y2CvB/2/
